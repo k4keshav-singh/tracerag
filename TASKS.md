@@ -157,7 +157,17 @@ These were caught by running things, not by reading them:
    `scrollHeight` before stylesheets and webfonts had settled, read a bogus
    value and clamped it to its own maximum. Deferred the first measurement to
    the next frame, repeated it on `window.load`, and added CSS `min-height` /
-   `max-height` so the field is sane even before the script runs.
+   `max-height` so the field is sane even before the script runs. That was not
+   enough - it still opened at its maximum - so the measurement was removed
+   from the load path entirely: the empty field is sized by CSS alone, and the
+   script only resizes in response to typing. Scripting only what CSS cannot do
+   made the load path deterministic.
+9. **Saturated palette read as a mock-up.** Full-chroma accents, coloured glow
+   shadows and an iridescent gradient border on the query panel made the UI
+   look rendered rather than real. Moved to a desaturated pastel palette with
+   neutral shadows, and verified all twenty colour pairs against WCAG AA with a
+   contrast script rather than by eye (six values failed the first pass and
+   were corrected).
 
 ## Unresolved limitations
 

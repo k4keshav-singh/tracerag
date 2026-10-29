@@ -168,19 +168,28 @@
 
   /* Grow the question field to fit its content.
    *
-   * The reset to "auto" must happen before scrollHeight is read, otherwise the
-   * previous explicit height is what gets measured and the field can only ever
-   * grow. Measuring before webfonts and stylesheets have settled also reads a
-   * bogus height, so the first call is deferred to the next frame and repeated
-   * on window load. */
+   * The empty field is sized by CSS alone (rows=1 plus min-height). Measuring
+   * scrollHeight at load proved unreliable - it reads a stale or pre-layout
+   * value and the field opened at its maximum height - so this runs only in
+   * response to content changing, and clears the inline height when the field
+   * is empty so CSS takes over again. Scripting only what CSS cannot do makes
+   * the load path deterministic.
+   *
+   * The reset to "auto" before reading scrollHeight is required: otherwise the
+   * previous explicit height is what gets measured, and the field could only
+   * ever grow. */
   var MAX_QUESTION_HEIGHT = 200;
 
   function autoGrow(textarea) {
+    if (!textarea.value) {
+      textarea.style.height = "";
+      textarea.style.overflowY = "hidden";
+      return;
+    }
     textarea.style.height = "auto";
-    var next = Math.min(textarea.scrollHeight, MAX_QUESTION_HEIGHT);
-    textarea.style.height = next + "px";
-    textarea.style.overflowY =
-      textarea.scrollHeight > MAX_QUESTION_HEIGHT ? "auto" : "hidden";
+    var content = textarea.scrollHeight;
+    textarea.style.height = Math.min(content, MAX_QUESTION_HEIGHT) + "px";
+    textarea.style.overflowY = content > MAX_QUESTION_HEIGHT ? "auto" : "hidden";
   }
 
   // ---------------------------------------------------------------- theming
@@ -636,8 +645,6 @@
     loadBenchmark();
 
     var question = el("question");
-    requestAnimationFrame(function () { autoGrow(question); });
-    window.addEventListener("load", function () { autoGrow(question); });
     question.addEventListener("input", function () { autoGrow(question); });
 
     // Enter submits, Shift+Enter inserts a newline.

@@ -357,14 +357,15 @@ docker run -p 8000:8000 tracerag:local
 Dockerfile, the CI workflow, and all documentation. The BM25 and RRF
 implementations are written out rather than imported.
 
-**Third-party design reference:** the interface's visual language — the
-four-colour palette (`#060B28`, `#6178FF`, `#A79FFF`, `#394063`), DM Sans, the
-lavender ground with drifting gradient mesh, and the label-over-value control
-row — is adapted from
+**Third-party design reference:** the interface's visual language — DM Sans,
+the lavender ground with drifting gradient mesh, and the label-over-value
+control row — is adapted from
 ["An all-encompassing database website design"](https://dribbble.com/shots/24279688-An-all-encompassing-database-website-design)
-by Mehedi Hasan for HD Design, used as a styling reference. No assets, markup or
-CSS were taken from it; the implementation is written from scratch against
-TraceRAG's own components.
+by Mehedi Hasan for HD Design, used as a styling reference. Its four accent
+colours (`#060B28`, `#6178FF`, `#A79FFF`, `#394063`) are the starting point for
+the palette, used here at reduced saturation. No assets, markup or CSS were
+taken from it; the implementation is written from scratch against TraceRAG's
+own components.
 
 **Synthetic data (written for this project):** the 18 NimbusDesk documents in
 `data/corpus/` and the 40 evaluation questions in `evaluation/`. NimbusDesk is a

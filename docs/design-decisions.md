@@ -164,6 +164,21 @@ read the way they do — "RETRIEVAL METHOD / Hybrid" is the same shape as the
 reference's "COUNTRY / Select", and it suits a control whose label is needed
 permanently rather than only while the field is empty.
 
+The reference's accent colours are used at reduced saturation. At full chroma,
+with coloured glows under the buttons and an iridescent gradient border on the
+query panel, the page read as a mock-up rather than as software: saturated
+accents plus halo shadows are the two cues that make an interface look
+rendered. The hues are kept and the chroma pulled back - chalky lavender and
+lilac for accents, desaturated sage, ochre and clay for status, soft charcoal
+instead of near-black for text, and neutral shallow shadows instead of coloured
+halos. The gradient border was removed outright.
+
+Every colour pair was checked rather than eyeballed. The palette passes WCAG AA
+on all twenty foreground/background combinations it actually uses: 4.5:1 for
+body and small text, 3:1 for the large hero type. Pastel accents are kept out of
+small text - `--violet` is for fills and gradients, `--violet-deep` is the
+text-safe variant, and `--primary-deep` carries small text on tinted fills.
+
 Motion is used where it carries information, not as decoration: the coverage
 meter animates to the measured value against a tick mark at the abstention
 threshold, score bars are scaled within a single result set (never across
