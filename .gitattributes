@@ -1,0 +1,16 @@
+# Normalise line endings. The repository stores LF; Windows working copies may
+# check out CRLF. This matters because CI runs on Linux and the Dockerfile
+# copies these files into a Linux image, where stray CR bytes change behaviour.
+* text=auto eol=lf
+
+# Binary assets: never touch these.
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.npy binary
+*.db binary
+
+# Keep diffs on generated reports readable but mark them as generated so they
+# do not dominate review; regenerate with `python -m app.evaluate`.
+reports/benchmark.json linguist-generated=true
+reports/benchmark.md   linguist-generated=true

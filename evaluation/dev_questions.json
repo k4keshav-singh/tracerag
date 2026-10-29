@@ -1,0 +1,167 @@
+{
+  "split": "dev",
+  "description": "Development questions. Used for tuning the abstention threshold and for inspecting failures. Synthetic, author-reviewed fixtures written against the NimbusDesk corpus - not an independently validated benchmark.",
+  "label_convention": "relevant_doc_ids lists documents that genuinely contain the answer. reference_fact is a short string that appears in, or directly paraphrases, those documents. Unanswerable questions have an empty relevant_doc_ids list and answerable=false.",
+  "questions": [
+    {
+      "id": "dev-001",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long do API keys last before they expire?",
+      "relevant_doc_ids": ["nd-auth-005"],
+      "reference_fact": "API keys expire 90 days after creation by default, up to a maximum of 365 days."
+    },
+    {
+      "id": "dev-002",
+      "type": "answerable",
+      "answerable": true,
+      "question": "What port does NimbusDesk Server listen on by default?",
+      "relevant_doc_ids": ["nd-install-001"],
+      "reference_fact": "The server listens on port 8787 by default."
+    },
+    {
+      "id": "dev-003",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How many built-in roles does NimbusDesk define?",
+      "relevant_doc_ids": ["nd-roles-004"],
+      "reference_fact": "NimbusDesk defines six built-in roles: Owner, Admin, Maintainer, Contributor, Viewer, Guest."
+    },
+    {
+      "id": "dev-004",
+      "type": "answerable",
+      "answerable": true,
+      "question": "What is the default sustained rate limit for a workspace?",
+      "relevant_doc_ids": ["nd-ratelimits-007"],
+      "reference_fact": "600 requests per minute per workspace."
+    },
+    {
+      "id": "dev-005",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How many items can a single list response return at most?",
+      "relevant_doc_ids": ["nd-pagination-008"],
+      "reference_fact": "limit defaults to 50 and the maximum accepted value is 200."
+    },
+    {
+      "id": "dev-006",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long is a generated export archive kept before it is deleted?",
+      "relevant_doc_ids": ["nd-exports-012", "nd-retention-011"],
+      "reference_fact": "Export archives are retained for 7 days."
+    },
+    {
+      "id": "dev-007",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How many times does NimbusDesk retry a failed webhook delivery?",
+      "relevant_doc_ids": ["nd-webhook-retries-010"],
+      "reference_fact": "Up to 6 retries after the initial attempt, for 7 attempts in total."
+    },
+    {
+      "id": "dev-008",
+      "type": "answerable",
+      "answerable": true,
+      "question": "What is the per-attempt timeout for a webhook delivery?",
+      "relevant_doc_ids": ["nd-webhook-retries-010"],
+      "reference_fact": "The per-attempt timeout is 10 seconds, measured to the response headers."
+    },
+    {
+      "id": "dev-009",
+      "type": "answerable",
+      "answerable": true,
+      "question": "What is the minimum PostgreSQL version required by release 2.4?",
+      "relevant_doc_ids": ["nd-install-001", "nd-troubleshoot-install-013"],
+      "reference_fact": "PostgreSQL 15 is the minimum; 14 and earlier are unsupported."
+    },
+    {
+      "id": "dev-010",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long are audit log entries retained?",
+      "relevant_doc_ids": ["nd-retention-011"],
+      "reference_fact": "Audit log entries are retained for 400 days."
+    },
+    {
+      "id": "dev-011",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "What is the largest page size a listing endpoint will give me?",
+      "relevant_doc_ids": ["nd-pagination-008"],
+      "reference_fact": "The maximum accepted limit is 200; larger values are clamped."
+    },
+    {
+      "id": "dev-012",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "How much warning do I get before a key stops working?",
+      "relevant_doc_ids": ["nd-auth-005", "nd-troubleshoot-api-014"],
+      "reference_fact": "A Warning: 299 header appears within 7 days of expiry, and the apikey.expiring event fires at the same 7-day mark."
+    },
+    {
+      "id": "dev-013",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "How long can a deleted desk still be brought back?",
+      "relevant_doc_ids": ["nd-retention-011"],
+      "reference_fact": "A deleted desk stays in the recycle bin for 30 days and can be restored until the purge."
+    },
+    {
+      "id": "dev-014",
+      "type": "version_conflict",
+      "answerable": true,
+      "question": "Do workspace tokens expire?",
+      "relevant_doc_ids": ["nd-auth-legacy-006", "nd-auth-005"],
+      "reference_fact": "Legacy 2.3 workspace tokens did not expire; that page is superseded, and in 2.4 scoped API keys expire after 90 days by default."
+    },
+    {
+      "id": "dev-015",
+      "type": "version_conflict",
+      "answerable": true,
+      "question": "Which HTTP header authenticates an API request?",
+      "relevant_doc_ids": ["nd-auth-005", "nd-auth-legacy-006"],
+      "reference_fact": "Release 2.4 uses Authorization: Bearer. The superseded 2.3 page describes X-Nimbus-Token, which 2.4 rejects."
+    },
+    {
+      "id": "dev-016",
+      "type": "ambiguous",
+      "answerable": true,
+      "question": "What is the limit?",
+      "relevant_doc_ids": ["nd-ratelimits-007", "nd-pagination-008", "nd-workspaces-003"],
+      "reference_fact": "Underspecified: the corpus documents request rate limits, pagination limits and per-workspace object limits."
+    },
+    {
+      "id": "dev-017",
+      "type": "ambiguous",
+      "answerable": true,
+      "question": "How long is the grace period?",
+      "relevant_doc_ids": ["nd-auth-005", "nd-workspaces-003"],
+      "reference_fact": "Underspecified: key rotation has a 24-hour grace window, workspace deletion a 14-day one, and a renamed slug is reserved for 30 days."
+    },
+    {
+      "id": "dev-018",
+      "type": "unanswerable",
+      "answerable": false,
+      "question": "What is NimbusDesk's telephone support number?",
+      "relevant_doc_ids": [],
+      "reference_fact": "The corpus never mentions telephone support."
+    },
+    {
+      "id": "dev-019",
+      "type": "unanswerable",
+      "answerable": false,
+      "question": "How much does a NimbusDesk Enterprise licence cost per seat?",
+      "relevant_doc_ids": [],
+      "reference_fact": "The corpus contains no pricing information."
+    },
+    {
+      "id": "dev-020",
+      "type": "unanswerable",
+      "answerable": false,
+      "question": "Which cloud regions is NimbusDesk Cloud hosted in?",
+      "relevant_doc_ids": [],
+      "reference_fact": "The corpus never lists hosting regions."
+    }
+  ]
+}

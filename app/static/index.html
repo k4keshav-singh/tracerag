@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TraceRAG</title>
+<link rel="stylesheet" href="/static/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>&#128269;</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <div>
+      <h1>TraceRAG</h1>
+      <p class="tagline">Evidence-backed Q&amp;A over a synthetic documentation corpus.</p>
+    </div>
+    <dl class="status-strip" id="status-strip" aria-live="polite">
+      <div class="status-item"><dt>Corpus</dt><dd id="stat-corpus">&hellip;</dd></div>
+      <div class="status-item"><dt>Methods</dt><dd id="stat-methods">&hellip;</dd></div>
+      <div class="status-item"><dt>Answer modes</dt><dd id="stat-llm">&hellip;</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <main>
+    <section class="panel" aria-labelledby="ask-heading">
+      <h2 id="ask-heading">Ask a question</h2>
+
+      <form id="ask-form" autocomplete="off">
+        <label class="field">
+          <span class="field-label">Question</span>
+          <textarea id="question" rows="2" required
+            placeholder="e.g. How long do API keys last before they expire?"></textarea>
+        </label>
+
+        <div class="controls">
+          <label class="field compact">
+            <span class="field-label">Retrieval method</span>
+            <select id="method"></select>
+          </label>
+          <label class="field compact">
+            <span class="field-label">Answer mode</span>
+            <select id="mode">
+              <option value="extractive">Extractive (no API key)</option>
+              <option value="llm">LLM (needs provider)</option>
+            </select>
+          </label>
+          <label class="field compact narrow">
+            <span class="field-label">Top K</span>
+            <input id="topk" type="number" min="1" max="20" value="5">
+          </label>
+          <button type="submit" class="primary" id="ask-button">Ask</button>
+        </div>
+      </form>
+
+      <div class="examples">
+        <span class="examples-label">Try:</span>
+        <div id="examples" class="example-chips"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="answer-panel" aria-labelledby="answer-heading" hidden>
+      <h2 id="answer-heading">Answer</h2>
+      <div id="answer-body"></div>
+    </section>
+
+    <section class="panel" id="chunks-panel" aria-labelledby="chunks-heading" hidden>
+      <div class="panel-head">
+        <h2 id="chunks-heading">Retrieved passages</h2>
+        <p class="hint" id="score-semantics"></p>
+      </div>
+      <div id="chunks-body"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="bench-heading">
+      <div class="panel-head">
+        <h2 id="bench-heading">Benchmark</h2>
+        <p class="hint">Results from a checked-in evaluation run, not a live measurement.</p>
+      </div>
+      <div id="benchmark-body" class="muted">Loading&hellip;</div>
+    </section>
+  </main>
+
+  <aside>
+    <section class="panel" aria-labelledby="corpus-heading">
+      <div class="panel-head">
+        <h2 id="corpus-heading">Documents</h2>
+        <button type="button" class="ghost" id="load-sample">Load sample corpus</button>
+      </div>
+      <p class="hint">
+        Synthetic documentation for a fictional product. Not real vendor material.
+      </p>
+      <div id="corpus-status" class="notice" hidden></div>
+      <div id="documents" class="muted">Loading&hellip;</div>
+    </section>
+
+    <section class="panel" aria-labelledby="upload-heading">
+      <h2 id="upload-heading">Upload</h2>
+      <p class="hint">UTF-8 <code>.md</code> or <code>.txt</code>, up to <span id="max-size">1 MB</span>.
+        Identical content is detected and skipped.</p>
+      <form id="upload-form">
+        <input type="file" id="file" accept=".md,.txt,text/markdown,text/plain" required>
+        <button type="submit" class="ghost" id="upload-button">Upload</button>
+      </form>
+      <div id="upload-status" class="notice" hidden></div>
+    </section>
+  </aside>
+</div>
+
+<div id="chunk-dialog" class="dialog-backdrop" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <div class="dialog-head">
+      <h3 id="dialog-title">Passage</h3>
+      <button type="button" class="ghost" id="dialog-close" aria-label="Close">Close</button>
+    </div>
+    <div id="dialog-body"></div>
+  </div>
+</div>
+
+<footer class="wrap footer">
+  <p>
+    TraceRAG is a portfolio project. The corpus is synthetic and describes a
+    fictional product. Retrieval scores from different methods are not
+    interchangeable.
+  </p>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

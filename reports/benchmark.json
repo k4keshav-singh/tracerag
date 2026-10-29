@@ -1,0 +1,2669 @@
+{
+  "tool": "TraceRAG",
+  "split": "test",
+  "fixture_description": "Held-out test questions. Not used for tuning any threshold or retrieval parameter. Synthetic, author-reviewed fixtures written against the NimbusDesk corpus - not an independently validated benchmark.",
+  "question_count": 20,
+  "run_timestamp": "2026-10-29T10:00:19+00:00",
+  "document_count": 18,
+  "chunk_count": 53,
+  "corpus_fingerprint": "5a2a77f50c8c22a56967f87022450dca031700aa7863f6bbacb413e6e2957360",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "settings": {
+    "chunk_size": 900,
+    "chunk_overlap": 180,
+    "rrf_k": 60,
+    "serving_top_k": 5,
+    "ranking_depth": 30,
+    "warmup_queries": 3,
+    "abstain_coverage_threshold": 0.55,
+    "abstain_evidence_chunks": 5
+  },
+  "environment": {
+    "python": "Python 3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "caveats": [
+    "Fixtures are synthetic and author-reviewed, not independently validated.",
+    "Latency comes from one machine and one process; treat it as indicative.",
+    "Citation validity is an identifier check, not a factual-accuracy check.",
+    "Semantic correctness of answers is not scored automatically."
+  ],
+  "methods": {
+    "keyword": {
+      "available": true,
+      "question_count": 20,
+      "answerable_count": 17,
+      "unanswerable_count": 3,
+      "doc_recall_at_5": 0.9705882352941176,
+      "doc_hit_at_5": 1.0,
+      "mrr_at_10": 0.9705882352941176,
+      "abstention_rate_unanswerable": 1.0,
+      "false_refusal_rate_answerable": 0.058823529411764705,
+      "citation_validity_rate": 1.0,
+      "latency_ms_mean": 1.32,
+      "latency_ms_median": 1.272,
+      "latency_ms_p95": 1.741,
+      "latency_ms_min": 1.052,
+      "latency_ms_max": 1.82
+    },
+    "semantic": {
+      "available": true,
+      "question_count": 20,
+      "answerable_count": 17,
+      "unanswerable_count": 3,
+      "doc_recall_at_5": 0.9117647058823529,
+      "doc_hit_at_5": 1.0,
+      "mrr_at_10": 0.8941176470588235,
+      "abstention_rate_unanswerable": 1.0,
+      "false_refusal_rate_answerable": 0.17647058823529413,
+      "citation_validity_rate": 1.0,
+      "latency_ms_mean": 27.356,
+      "latency_ms_median": 28.194,
+      "latency_ms_p95": 37.647,
+      "latency_ms_min": 17.099,
+      "latency_ms_max": 38.262
+    },
+    "hybrid": {
+      "available": true,
+      "question_count": 20,
+      "answerable_count": 17,
+      "unanswerable_count": 3,
+      "doc_recall_at_5": 0.9411764705882353,
+      "doc_hit_at_5": 1.0,
+      "mrr_at_10": 0.9705882352941176,
+      "abstention_rate_unanswerable": 1.0,
+      "false_refusal_rate_answerable": 0.058823529411764705,
+      "citation_validity_rate": 1.0,
+      "latency_ms_mean": 26.953,
+      "latency_ms_median": 26.815,
+      "latency_ms_p95": 30.986,
+      "latency_ms_min": 18.301,
+      "latency_ms_max": 31.387
+    }
+  },
+  "per_question": {
+    "keyword": [
+      {
+        "question_id": "test-001",
+        "question": "What is the burst capacity of the workspace rate limiter?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-ratelimits-007"
+        ],
+        "retrieved_doc_ids": [
+          "nd-ratelimits-007",
+          "nd-config-002",
+          "nd-webhook-retries-010",
+          "nd-exports-012",
+          "nd-changelog-015",
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-workspaces-003",
+          "nd-auth-legacy-006",
+          "nd-cli-018"
+        ],
+        "top_chunk_ids": [
+          "nd-ratelimits-007::0000",
+          "nd-ratelimits-007::0002",
+          "nd-config-002::0001",
+          "nd-ratelimits-007::0001",
+          "nd-webhook-retries-010::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 1.091,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-002",
+        "question": "How many concurrent delivery requests does NimbusDesk make to one webhook endpoint?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-webhook-retries-010"
+        ],
+        "retrieved_doc_ids": [
+          "nd-webhook-retries-010",
+          "nd-ratelimits-007",
+          "nd-webhooks-009",
+          "nd-cli-018",
+          "nd-workspaces-003",
+          "nd-troubleshoot-api-014",
+          "nd-changelog-015",
+          "nd-config-002",
+          "nd-retention-011",
+          "nd-auth-005"
+        ],
+        "top_chunk_ids": [
+          "nd-webhook-retries-010::0002",
+          "nd-ratelimits-007::0002",
+          "nd-webhook-retries-010::0000",
+          "nd-webhooks-009::0002",
+          "nd-webhook-retries-010::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.7778,
+        "latency_ms": 1.741,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-003",
+        "question": "How long is the grace window after an API key is rotated?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-workspaces-003",
+          "nd-troubleshoot-api-014",
+          "nd-changelog-015",
+          "nd-auth-legacy-006",
+          "nd-retention-011",
+          "nd-migration-016",
+          "nd-sso-017",
+          "nd-roles-004",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-auth-005::0002",
+          "nd-workspaces-003::0002",
+          "nd-troubleshoot-api-014::0000",
+          "nd-troubleshoot-api-014::0001",
+          "nd-workspaces-003::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 1.069,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-004",
+        "question": "How large can a single export part be?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-webhooks-009",
+          "nd-config-002",
+          "nd-install-001",
+          "nd-changelog-015",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-install-013",
+          "nd-webhook-retries-010"
+        ],
+        "top_chunk_ids": [
+          "nd-exports-012::0002",
+          "nd-exports-012::0001",
+          "nd-cli-018::0001",
+          "nd-exports-012::0000",
+          "nd-retention-011::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.75,
+        "latency_ms": 1.285,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-005",
+        "question": "How long does a pagination cursor stay valid?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-pagination-008"
+        ],
+        "retrieved_doc_ids": [
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-workspaces-003",
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-install-001",
+          "nd-troubleshoot-install-013",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-pagination-008::0001",
+          "nd-pagination-008::0000",
+          "nd-troubleshoot-api-014::0002",
+          "nd-pagination-008::0002",
+          "nd-workspaces-003::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8,
+        "latency_ms": 1.366,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-006",
+        "question": "Which is the lowest role that can create an API key?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-roles-004"
+        ],
+        "retrieved_doc_ids": [
+          "nd-roles-004",
+          "nd-auth-005",
+          "nd-changelog-015",
+          "nd-cli-018",
+          "nd-webhooks-009",
+          "nd-troubleshoot-api-014",
+          "nd-sso-017",
+          "nd-migration-016",
+          "nd-install-001",
+          "nd-config-002"
+        ],
+        "top_chunk_ids": [
+          "nd-roles-004::0001",
+          "nd-auth-005::0002",
+          "nd-changelog-015::0000",
+          "nd-auth-005::0001",
+          "nd-roles-004::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 1.186,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-007",
+        "question": "How long does a development tunnel stay open?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-cli-018"
+        ],
+        "retrieved_doc_ids": [
+          "nd-cli-018",
+          "nd-webhooks-009",
+          "nd-workspaces-003",
+          "nd-config-002"
+        ],
+        "top_chunk_ids": [
+          "nd-cli-018::0002",
+          "nd-webhooks-009::0000",
+          "nd-workspaces-003::0002",
+          "nd-config-002::0001",
+          "nd-cli-018::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8,
+        "latency_ms": 1.263,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-008",
+        "question": "After how long is a continuously failing webhook endpoint disabled automatically?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-webhook-retries-010"
+        ],
+        "retrieved_doc_ids": [
+          "nd-webhook-retries-010",
+          "nd-workspaces-003",
+          "nd-troubleshoot-api-014",
+          "nd-ratelimits-007",
+          "nd-cli-018",
+          "nd-sso-017",
+          "nd-webhooks-009",
+          "nd-changelog-015",
+          "nd-retention-011",
+          "nd-migration-016"
+        ],
+        "top_chunk_ids": [
+          "nd-webhook-retries-010::0002",
+          "nd-webhook-retries-010::0001",
+          "nd-workspaces-003::0002",
+          "nd-troubleshoot-api-014::0002",
+          "nd-webhook-retries-010::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.75,
+        "latency_ms": 1.099,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-009",
+        "question": "What is the SCIM base URL for a workspace?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-sso-017"
+        ],
+        "retrieved_doc_ids": [
+          "nd-sso-017",
+          "nd-exports-012",
+          "nd-webhooks-009",
+          "nd-cli-018",
+          "nd-troubleshoot-install-013",
+          "nd-install-001",
+          "nd-config-002",
+          "nd-migration-016",
+          "nd-workspaces-003"
+        ],
+        "top_chunk_ids": [
+          "nd-sso-017::0001",
+          "nd-sso-017::0000",
+          "nd-sso-017::0002",
+          "nd-exports-012::0001",
+          "nd-webhooks-009::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 1.82,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-010",
+        "question": "How long does a workspace stay in pending deletion before it is purged?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-config-002",
+          "nd-ratelimits-007",
+          "nd-migration-016",
+          "nd-sso-017",
+          "nd-changelog-015",
+          "nd-troubleshoot-install-013",
+          "nd-install-001",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0002",
+          "nd-workspaces-003::0001",
+          "nd-retention-011::0002",
+          "nd-retention-011::0001",
+          "nd-retention-011::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 1.252,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-011",
+        "question": "If I rename a workspace, do links using the old name break straight away?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-config-002",
+          "nd-webhooks-009",
+          "nd-cli-018",
+          "nd-auth-005",
+          "nd-troubleshoot-api-014",
+          "nd-webhook-retries-010",
+          "nd-exports-012",
+          "nd-auth-legacy-006",
+          "nd-retention-011"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0001",
+          "nd-workspaces-003::0000",
+          "nd-config-002::0002",
+          "nd-webhooks-009::0001",
+          "nd-config-002::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6667,
+        "latency_ms": 1.527,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-012",
+        "question": "My export download link stopped working after an hour. Is the export gone?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-webhooks-009",
+          "nd-ratelimits-007",
+          "nd-migration-016",
+          "nd-auth-legacy-006",
+          "nd-changelog-015",
+          "nd-auth-005",
+          "nd-webhook-retries-010"
+        ],
+        "top_chunk_ids": [
+          "nd-exports-012::0001",
+          "nd-exports-012::0002",
+          "nd-cli-018::0001",
+          "nd-retention-011::0002",
+          "nd-webhooks-009::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": true,
+        "abstention_correct": false,
+        "coverage": 0.5,
+        "latency_ms": 1.345,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-013",
+        "question": "With single sign-on enforced, can anyone still sign in using a password?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-sso-017"
+        ],
+        "retrieved_doc_ids": [
+          "nd-sso-017",
+          "nd-troubleshoot-install-013",
+          "nd-webhooks-009",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-api-014",
+          "nd-config-002",
+          "nd-install-001",
+          "nd-retention-011",
+          "nd-auth-005",
+          "nd-cli-018"
+        ],
+        "top_chunk_ids": [
+          "nd-sso-017::0000",
+          "nd-sso-017::0001",
+          "nd-troubleshoot-install-013::0001",
+          "nd-webhooks-009::0001",
+          "nd-auth-legacy-006::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 1.531,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-014",
+        "question": "How many webhook retries did NimbusDesk do before release 2.4?",
+        "type": "version_conflict",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-changelog-015",
+          "nd-migration-016"
+        ],
+        "retrieved_doc_ids": [
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-install-001",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-auth-legacy-006",
+          "nd-auth-005",
+          "nd-troubleshoot-api-014",
+          "nd-ratelimits-007",
+          "nd-sso-017"
+        ],
+        "top_chunk_ids": [
+          "nd-changelog-015::0001",
+          "nd-migration-016::0002",
+          "nd-install-001::0000",
+          "nd-changelog-015::0000",
+          "nd-webhook-retries-010::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8333,
+        "latency_ms": 1.623,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-015",
+        "question": "Can I use the page or offset query parameter on list endpoints?",
+        "type": "version_conflict",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-pagination-008",
+          "nd-changelog-015"
+        ],
+        "retrieved_doc_ids": [
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-webhooks-009",
+          "nd-auth-005",
+          "nd-troubleshoot-install-013",
+          "nd-cli-018",
+          "nd-sso-017",
+          "nd-retention-011"
+        ],
+        "top_chunk_ids": [
+          "nd-pagination-008::0000",
+          "nd-troubleshoot-api-014::0002",
+          "nd-changelog-015::0000",
+          "nd-migration-016::0002",
+          "nd-migration-016::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 1.28,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-016",
+        "question": "How long is the retention period?",
+        "type": "ambiguous",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-retention-011"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-changelog-015"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0002",
+          "nd-retention-011::0000",
+          "nd-workspaces-003::0001",
+          "nd-retention-011::0001",
+          "nd-changelog-015::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 0.5,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 1.167,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-017",
+        "question": "What is the maximum number of keys?",
+        "type": "ambiguous",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003",
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-changelog-015",
+          "nd-troubleshoot-api-014",
+          "nd-pagination-008",
+          "nd-migration-016",
+          "nd-sso-017",
+          "nd-roles-004",
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-ratelimits-007"
+        ],
+        "top_chunk_ids": [
+          "nd-auth-005::0001",
+          "nd-changelog-015::0000",
+          "nd-troubleshoot-api-014::0002",
+          "nd-pagination-008::0000",
+          "nd-troubleshoot-api-014::0001"
+        ],
+        "recall_at_5": 0.5,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6667,
+        "latency_ms": 1.052,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-018",
+        "question": "What uptime percentage does the NimbusDesk SLA guarantee?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-troubleshoot-install-013",
+          "nd-sso-017",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-exports-012",
+          "nd-webhooks-009",
+          "nd-pagination-008"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0001",
+          "nd-install-001::0000",
+          "nd-config-002::0000",
+          "nd-cli-018::0000",
+          "nd-cli-018::0001"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.2,
+        "latency_ms": 1.178,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-019",
+        "question": "Is there a NimbusDesk mobile application for iOS?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-troubleshoot-install-013",
+          "nd-sso-017",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-exports-012",
+          "nd-webhooks-009",
+          "nd-pagination-008"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0001",
+          "nd-install-001::0000",
+          "nd-config-002::0000",
+          "nd-cli-018::0000",
+          "nd-cli-018::0001"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.25,
+        "latency_ms": 1.215,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-020",
+        "question": "Who founded the company behind NimbusDesk?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-troubleshoot-install-013",
+          "nd-sso-017",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-exports-012",
+          "nd-webhooks-009",
+          "nd-pagination-008"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0001",
+          "nd-install-001::0000",
+          "nd-config-002::0000",
+          "nd-cli-018::0000",
+          "nd-cli-018::0001"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.25,
+        "latency_ms": 1.308,
+        "citations_valid": true,
+        "notes": ""
+      }
+    ],
+    "semantic": [
+      {
+        "question_id": "test-001",
+        "question": "What is the burst capacity of the workspace rate limiter?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-ratelimits-007"
+        ],
+        "retrieved_doc_ids": [
+          "nd-ratelimits-007",
+          "nd-workspaces-003",
+          "nd-webhook-retries-010",
+          "nd-troubleshoot-api-014",
+          "nd-retention-011",
+          "nd-changelog-015",
+          "nd-pagination-008",
+          "nd-config-002",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-ratelimits-007::0000",
+          "nd-ratelimits-007::0002",
+          "nd-ratelimits-007::0001",
+          "nd-workspaces-003::0001",
+          "nd-webhook-retries-010::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 32.128,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-002",
+        "question": "How many concurrent delivery requests does NimbusDesk make to one webhook endpoint?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-webhook-retries-010"
+        ],
+        "retrieved_doc_ids": [
+          "nd-webhook-retries-010",
+          "nd-ratelimits-007",
+          "nd-webhooks-009",
+          "nd-cli-018",
+          "nd-config-002",
+          "nd-troubleshoot-api-014",
+          "nd-troubleshoot-install-013",
+          "nd-changelog-015",
+          "nd-install-001",
+          "nd-pagination-008"
+        ],
+        "top_chunk_ids": [
+          "nd-webhook-retries-010::0002",
+          "nd-webhook-retries-010::0000",
+          "nd-ratelimits-007::0002",
+          "nd-webhook-retries-010::0003",
+          "nd-webhooks-009::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.7778,
+        "latency_ms": 37.647,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-003",
+        "question": "How long is the grace window after an API key is rotated?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-troubleshoot-api-014",
+          "nd-auth-legacy-006",
+          "nd-roles-004",
+          "nd-migration-016",
+          "nd-changelog-015",
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-sso-017",
+          "nd-pagination-008"
+        ],
+        "top_chunk_ids": [
+          "nd-auth-005::0002",
+          "nd-troubleshoot-api-014::0001",
+          "nd-troubleshoot-api-014::0000",
+          "nd-auth-legacy-006::0001",
+          "nd-auth-005::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 38.262,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-004",
+        "question": "How large can a single export part be?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-ratelimits-007",
+          "nd-changelog-015",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-webhook-retries-010",
+          "nd-migration-016",
+          "nd-pagination-008",
+          "nd-config-002",
+          "nd-troubleshoot-api-014"
+        ],
+        "top_chunk_ids": [
+          "nd-exports-012::0001",
+          "nd-exports-012::0000",
+          "nd-exports-012::0002",
+          "nd-ratelimits-007::0001",
+          "nd-changelog-015::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": true,
+        "abstention_correct": false,
+        "coverage": 0.5,
+        "latency_ms": 33.888,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-005",
+        "question": "How long does a pagination cursor stay valid?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-pagination-008"
+        ],
+        "retrieved_doc_ids": [
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-migration-016",
+          "nd-retention-011",
+          "nd-workspaces-003",
+          "nd-webhook-retries-010",
+          "nd-changelog-015",
+          "nd-ratelimits-007"
+        ],
+        "top_chunk_ids": [
+          "nd-pagination-008::0001",
+          "nd-pagination-008::0000",
+          "nd-troubleshoot-api-014::0002",
+          "nd-pagination-008::0002",
+          "nd-migration-016::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6,
+        "latency_ms": 30.458,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-006",
+        "question": "Which is the lowest role that can create an API key?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-roles-004"
+        ],
+        "retrieved_doc_ids": [
+          "nd-roles-004",
+          "nd-changelog-015",
+          "nd-auth-005",
+          "nd-migration-016",
+          "nd-troubleshoot-api-014",
+          "nd-sso-017",
+          "nd-workspaces-003",
+          "nd-cli-018",
+          "nd-auth-legacy-006",
+          "nd-webhooks-009"
+        ],
+        "top_chunk_ids": [
+          "nd-roles-004::0001",
+          "nd-roles-004::0002",
+          "nd-changelog-015::0000",
+          "nd-auth-005::0002",
+          "nd-roles-004::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 31.568,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-007",
+        "question": "How long does a development tunnel stay open?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-cli-018"
+        ],
+        "retrieved_doc_ids": [
+          "nd-cli-018",
+          "nd-auth-005",
+          "nd-workspaces-003",
+          "nd-troubleshoot-install-013",
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-ratelimits-007",
+          "nd-webhook-retries-010",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-api-014"
+        ],
+        "top_chunk_ids": [
+          "nd-cli-018::0002",
+          "nd-auth-005::0001",
+          "nd-workspaces-003::0002",
+          "nd-troubleshoot-install-013::0002",
+          "nd-changelog-015::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6,
+        "latency_ms": 28.173,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-008",
+        "question": "After how long is a continuously failing webhook endpoint disabled automatically?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-webhook-retries-010"
+        ],
+        "retrieved_doc_ids": [
+          "nd-webhook-retries-010",
+          "nd-troubleshoot-api-014",
+          "nd-ratelimits-007",
+          "nd-changelog-015",
+          "nd-webhooks-009",
+          "nd-cli-018",
+          "nd-migration-016",
+          "nd-auth-005",
+          "nd-workspaces-003",
+          "nd-troubleshoot-install-013"
+        ],
+        "top_chunk_ids": [
+          "nd-webhook-retries-010::0002",
+          "nd-webhook-retries-010::0001",
+          "nd-troubleshoot-api-014::0002",
+          "nd-webhook-retries-010::0000",
+          "nd-ratelimits-007::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.625,
+        "latency_ms": 23.988,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-009",
+        "question": "What is the SCIM base URL for a workspace?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-sso-017"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-sso-017",
+          "nd-webhooks-009",
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-auth-legacy-006",
+          "nd-auth-005",
+          "nd-migration-016",
+          "nd-roles-004",
+          "nd-retention-011"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0000",
+          "nd-sso-017::0001",
+          "nd-workspaces-003::0001",
+          "nd-webhooks-009::0000",
+          "nd-sso-017::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 0.5,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 22.357,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-010",
+        "question": "How long does a workspace stay in pending deletion before it is purged?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-webhooks-009",
+          "nd-changelog-015",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-api-014",
+          "nd-pagination-008",
+          "nd-webhook-retries-010",
+          "nd-roles-004"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0002",
+          "nd-retention-011::0001",
+          "nd-retention-011::0002",
+          "nd-retention-011::0000",
+          "nd-workspaces-003::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 32.625,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-011",
+        "question": "If I rename a workspace, do links using the old name break straight away?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-migration-016",
+          "nd-exports-012",
+          "nd-sso-017",
+          "nd-webhooks-009",
+          "nd-roles-004",
+          "nd-troubleshoot-api-014"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0001",
+          "nd-workspaces-003::0000",
+          "nd-workspaces-003::0002",
+          "nd-retention-011::0001",
+          "nd-auth-005::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": true,
+        "abstention_correct": false,
+        "coverage": 0.4444,
+        "latency_ms": 30.593,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-012",
+        "question": "My export download link stopped working after an hour. Is the export gone?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-changelog-015",
+          "nd-retention-011",
+          "nd-troubleshoot-install-013",
+          "nd-webhooks-009",
+          "nd-troubleshoot-api-014",
+          "nd-webhook-retries-010",
+          "nd-install-001",
+          "nd-ratelimits-007"
+        ],
+        "top_chunk_ids": [
+          "nd-exports-012::0001",
+          "nd-exports-012::0002",
+          "nd-exports-012::0000",
+          "nd-cli-018::0001",
+          "nd-changelog-015::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": true,
+        "abstention_correct": false,
+        "coverage": 0.5,
+        "latency_ms": 21.813,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-013",
+        "question": "With single sign-on enforced, can anyone still sign in using a password?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-sso-017"
+        ],
+        "retrieved_doc_ids": [
+          "nd-sso-017",
+          "nd-auth-005",
+          "nd-roles-004",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-api-014",
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-troubleshoot-install-013",
+          "nd-workspaces-003",
+          "nd-ratelimits-007"
+        ],
+        "top_chunk_ids": [
+          "nd-sso-017::0001",
+          "nd-sso-017::0000",
+          "nd-auth-005::0002",
+          "nd-roles-004::0001",
+          "nd-sso-017::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.7143,
+        "latency_ms": 30.832,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-014",
+        "question": "How many webhook retries did NimbusDesk do before release 2.4?",
+        "type": "version_conflict",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-changelog-015",
+          "nd-migration-016"
+        ],
+        "retrieved_doc_ids": [
+          "nd-cli-018",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-config-002",
+          "nd-changelog-015",
+          "nd-ratelimits-007",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-install-001",
+          "nd-troubleshoot-api-014"
+        ],
+        "top_chunk_ids": [
+          "nd-cli-018::0002",
+          "nd-webhook-retries-010::0002",
+          "nd-cli-018::0001",
+          "nd-webhook-retries-010::0000",
+          "nd-webhooks-009::0002"
+        ],
+        "recall_at_5": 0.5,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 0.2,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6667,
+        "latency_ms": 21.297,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-015",
+        "question": "Can I use the page or offset query parameter on list endpoints?",
+        "type": "version_conflict",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-pagination-008",
+          "nd-changelog-015"
+        ],
+        "retrieved_doc_ids": [
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-migration-016",
+          "nd-ratelimits-007",
+          "nd-webhooks-009",
+          "nd-workspaces-003",
+          "nd-changelog-015",
+          "nd-auth-005",
+          "nd-webhook-retries-010",
+          "nd-cli-018"
+        ],
+        "top_chunk_ids": [
+          "nd-pagination-008::0000",
+          "nd-pagination-008::0002",
+          "nd-troubleshoot-api-014::0002",
+          "nd-migration-016::0002",
+          "nd-pagination-008::0001"
+        ],
+        "recall_at_5": 0.5,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.7143,
+        "latency_ms": 17.687,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-016",
+        "question": "How long is the retention period?",
+        "type": "ambiguous",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-retention-011"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-changelog-015",
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-auth-005",
+          "nd-webhook-retries-010",
+          "nd-ratelimits-007",
+          "nd-auth-legacy-006",
+          "nd-webhooks-009"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0002",
+          "nd-retention-011::0000",
+          "nd-retention-011::0002",
+          "nd-changelog-015::0001",
+          "nd-pagination-008::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 0.5,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 17.099,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-017",
+        "question": "What is the maximum number of keys?",
+        "type": "ambiguous",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003",
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-roles-004",
+          "nd-changelog-015",
+          "nd-ratelimits-007",
+          "nd-migration-016",
+          "nd-workspaces-003",
+          "nd-troubleshoot-api-014",
+          "nd-config-002",
+          "nd-pagination-008"
+        ],
+        "top_chunk_ids": [
+          "nd-auth-005::0001",
+          "nd-roles-004::0001",
+          "nd-changelog-015::0000",
+          "nd-ratelimits-007::0000",
+          "nd-auth-005::0002"
+        ],
+        "recall_at_5": 0.5,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6667,
+        "latency_ms": 20.267,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-018",
+        "question": "What uptime percentage does the NimbusDesk SLA guarantee?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-ratelimits-007",
+          "nd-cli-018",
+          "nd-webhook-retries-010",
+          "nd-config-002",
+          "nd-webhooks-009",
+          "nd-install-001",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-install-013",
+          "nd-changelog-015"
+        ],
+        "top_chunk_ids": [
+          "nd-ratelimits-007::0000",
+          "nd-cli-018::0001",
+          "nd-webhook-retries-010::0002",
+          "nd-webhook-retries-010::0000",
+          "nd-config-002::0001"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.2,
+        "latency_ms": 28.215,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-019",
+        "question": "Is there a NimbusDesk mobile application for iOS?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-cli-018",
+          "nd-config-002",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-ratelimits-007",
+          "nd-troubleshoot-install-013",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-sso-017"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0000",
+          "nd-cli-018::0001",
+          "nd-install-001::0001",
+          "nd-config-002::0000",
+          "nd-install-001::0002"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.25,
+        "latency_ms": 20.737,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-020",
+        "question": "Who founded the company behind NimbusDesk?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-auth-005",
+          "nd-troubleshoot-install-013",
+          "nd-auth-legacy-006",
+          "nd-sso-017",
+          "nd-webhooks-009",
+          "nd-webhook-retries-010",
+          "nd-ratelimits-007"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0001",
+          "nd-install-001::0002",
+          "nd-config-002::0000",
+          "nd-cli-018::0001",
+          "nd-install-001::0000"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.25,
+        "latency_ms": 27.481,
+        "citations_valid": true,
+        "notes": ""
+      }
+    ],
+    "hybrid": [
+      {
+        "question_id": "test-001",
+        "question": "What is the burst capacity of the workspace rate limiter?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-ratelimits-007"
+        ],
+        "retrieved_doc_ids": [
+          "nd-ratelimits-007",
+          "nd-webhook-retries-010",
+          "nd-config-002",
+          "nd-workspaces-003",
+          "nd-changelog-015",
+          "nd-exports-012",
+          "nd-troubleshoot-api-014",
+          "nd-retention-011",
+          "nd-pagination-008",
+          "nd-auth-legacy-006"
+        ],
+        "top_chunk_ids": [
+          "nd-ratelimits-007::0000",
+          "nd-ratelimits-007::0002",
+          "nd-ratelimits-007::0001",
+          "nd-webhook-retries-010::0002",
+          "nd-config-002::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 31.387,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-002",
+        "question": "How many concurrent delivery requests does NimbusDesk make to one webhook endpoint?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-webhook-retries-010"
+        ],
+        "retrieved_doc_ids": [
+          "nd-webhook-retries-010",
+          "nd-ratelimits-007",
+          "nd-webhooks-009",
+          "nd-cli-018",
+          "nd-troubleshoot-api-014",
+          "nd-config-002",
+          "nd-changelog-015",
+          "nd-workspaces-003",
+          "nd-install-001",
+          "nd-auth-005"
+        ],
+        "top_chunk_ids": [
+          "nd-webhook-retries-010::0002",
+          "nd-ratelimits-007::0002",
+          "nd-webhook-retries-010::0000",
+          "nd-webhooks-009::0002",
+          "nd-webhook-retries-010::0003"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.7778,
+        "latency_ms": 30.986,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-003",
+        "question": "How long is the grace window after an API key is rotated?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-troubleshoot-api-014",
+          "nd-auth-legacy-006",
+          "nd-workspaces-003",
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-roles-004",
+          "nd-retention-011",
+          "nd-sso-017",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-auth-005::0002",
+          "nd-troubleshoot-api-014::0001",
+          "nd-troubleshoot-api-014::0000",
+          "nd-auth-legacy-006::0001",
+          "nd-workspaces-003::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 29.085,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-004",
+        "question": "How large can a single export part be?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-changelog-015",
+          "nd-webhooks-009",
+          "nd-install-001",
+          "nd-webhook-retries-010",
+          "nd-config-002",
+          "nd-auth-legacy-006",
+          "nd-migration-016"
+        ],
+        "top_chunk_ids": [
+          "nd-exports-012::0001",
+          "nd-exports-012::0002",
+          "nd-exports-012::0000",
+          "nd-cli-018::0001",
+          "nd-retention-011::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.75,
+        "latency_ms": 28.312,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-005",
+        "question": "How long does a pagination cursor stay valid?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-pagination-008"
+        ],
+        "retrieved_doc_ids": [
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-migration-016",
+          "nd-workspaces-003",
+          "nd-changelog-015",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-install-001",
+          "nd-exports-012",
+          "nd-auth-legacy-006"
+        ],
+        "top_chunk_ids": [
+          "nd-pagination-008::0001",
+          "nd-pagination-008::0000",
+          "nd-troubleshoot-api-014::0002",
+          "nd-pagination-008::0002",
+          "nd-migration-016::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6,
+        "latency_ms": 26.919,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-006",
+        "question": "Which is the lowest role that can create an API key?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-roles-004"
+        ],
+        "retrieved_doc_ids": [
+          "nd-roles-004",
+          "nd-auth-005",
+          "nd-changelog-015",
+          "nd-cli-018",
+          "nd-migration-016",
+          "nd-sso-017",
+          "nd-troubleshoot-api-014",
+          "nd-workspaces-003",
+          "nd-webhooks-009",
+          "nd-auth-legacy-006"
+        ],
+        "top_chunk_ids": [
+          "nd-roles-004::0001",
+          "nd-auth-005::0002",
+          "nd-changelog-015::0000",
+          "nd-roles-004::0002",
+          "nd-auth-005::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 18.301,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-007",
+        "question": "How long does a development tunnel stay open?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-cli-018"
+        ],
+        "retrieved_doc_ids": [
+          "nd-cli-018",
+          "nd-workspaces-003",
+          "nd-webhooks-009",
+          "nd-config-002",
+          "nd-auth-005",
+          "nd-troubleshoot-install-013",
+          "nd-changelog-015",
+          "nd-migration-016",
+          "nd-ratelimits-007",
+          "nd-webhook-retries-010"
+        ],
+        "top_chunk_ids": [
+          "nd-cli-018::0002",
+          "nd-workspaces-003::0002",
+          "nd-cli-018::0001",
+          "nd-webhooks-009::0000",
+          "nd-config-002::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8,
+        "latency_ms": 26.488,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-008",
+        "question": "After how long is a continuously failing webhook endpoint disabled automatically?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-webhook-retries-010"
+        ],
+        "retrieved_doc_ids": [
+          "nd-webhook-retries-010",
+          "nd-troubleshoot-api-014",
+          "nd-ratelimits-007",
+          "nd-changelog-015",
+          "nd-cli-018",
+          "nd-webhooks-009",
+          "nd-migration-016",
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-auth-005"
+        ],
+        "top_chunk_ids": [
+          "nd-webhook-retries-010::0002",
+          "nd-webhook-retries-010::0001",
+          "nd-troubleshoot-api-014::0002",
+          "nd-webhook-retries-010::0000",
+          "nd-ratelimits-007::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.625,
+        "latency_ms": 26.169,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-009",
+        "question": "What is the SCIM base URL for a workspace?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-sso-017"
+        ],
+        "retrieved_doc_ids": [
+          "nd-sso-017",
+          "nd-webhooks-009",
+          "nd-workspaces-003",
+          "nd-cli-018",
+          "nd-exports-012",
+          "nd-migration-016",
+          "nd-install-001",
+          "nd-auth-legacy-006",
+          "nd-config-002",
+          "nd-troubleshoot-install-013"
+        ],
+        "top_chunk_ids": [
+          "nd-sso-017::0001",
+          "nd-sso-017::0000",
+          "nd-webhooks-009::0000",
+          "nd-sso-017::0002",
+          "nd-workspaces-003::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 23.77,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-010",
+        "question": "How long does a workspace stay in pending deletion before it is purged?",
+        "type": "answerable",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-changelog-015",
+          "nd-webhooks-009",
+          "nd-ratelimits-007",
+          "nd-auth-legacy-006",
+          "nd-config-002",
+          "nd-migration-016",
+          "nd-auth-005",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0002",
+          "nd-retention-011::0001",
+          "nd-retention-011::0002",
+          "nd-workspaces-003::0001",
+          "nd-retention-011::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 27.568,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-011",
+        "question": "If I rename a workspace, do links using the old name break straight away?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-webhooks-009",
+          "nd-auth-legacy-006",
+          "nd-retention-011",
+          "nd-exports-012",
+          "nd-auth-005",
+          "nd-cli-018",
+          "nd-migration-016",
+          "nd-config-002",
+          "nd-sso-017"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0001",
+          "nd-workspaces-003::0000",
+          "nd-workspaces-003::0002",
+          "nd-webhooks-009::0001",
+          "nd-auth-legacy-006::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.5556,
+        "latency_ms": 26.663,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-012",
+        "question": "My export download link stopped working after an hour. Is the export gone?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-webhooks-009",
+          "nd-changelog-015",
+          "nd-ratelimits-007",
+          "nd-webhook-retries-010",
+          "nd-migration-016",
+          "nd-troubleshoot-api-014",
+          "nd-auth-legacy-006"
+        ],
+        "top_chunk_ids": [
+          "nd-exports-012::0001",
+          "nd-exports-012::0002",
+          "nd-cli-018::0001",
+          "nd-exports-012::0000",
+          "nd-retention-011::0002"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": true,
+        "abstention_correct": false,
+        "coverage": 0.5,
+        "latency_ms": 30.122,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-013",
+        "question": "With single sign-on enforced, can anyone still sign in using a password?",
+        "type": "paraphrase",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-sso-017"
+        ],
+        "retrieved_doc_ids": [
+          "nd-sso-017",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-install-013",
+          "nd-auth-005",
+          "nd-webhooks-009",
+          "nd-retention-011",
+          "nd-migration-016",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-troubleshoot-api-014"
+        ],
+        "top_chunk_ids": [
+          "nd-sso-017::0000",
+          "nd-sso-017::0001",
+          "nd-auth-legacy-006::0000",
+          "nd-troubleshoot-install-013::0001",
+          "nd-auth-005::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.7143,
+        "latency_ms": 26.866,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-014",
+        "question": "How many webhook retries did NimbusDesk do before release 2.4?",
+        "type": "version_conflict",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-changelog-015",
+          "nd-migration-016"
+        ],
+        "retrieved_doc_ids": [
+          "nd-changelog-015",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-install-001",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-migration-016",
+          "nd-ratelimits-007",
+          "nd-cli-018",
+          "nd-config-002"
+        ],
+        "top_chunk_ids": [
+          "nd-changelog-015::0001",
+          "nd-webhook-retries-010::0000",
+          "nd-webhooks-009::0002",
+          "nd-webhook-retries-010::0002",
+          "nd-install-001::0000"
+        ],
+        "recall_at_5": 0.5,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8333,
+        "latency_ms": 26.62,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-015",
+        "question": "Can I use the page or offset query parameter on list endpoints?",
+        "type": "version_conflict",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-pagination-008",
+          "nd-changelog-015"
+        ],
+        "retrieved_doc_ids": [
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-migration-016",
+          "nd-changelog-015",
+          "nd-webhooks-009",
+          "nd-auth-005",
+          "nd-ratelimits-007",
+          "nd-webhook-retries-010",
+          "nd-exports-012",
+          "nd-cli-018"
+        ],
+        "top_chunk_ids": [
+          "nd-pagination-008::0000",
+          "nd-troubleshoot-api-014::0002",
+          "nd-pagination-008::0002",
+          "nd-migration-016::0002",
+          "nd-changelog-015::0000"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.8571,
+        "latency_ms": 26.763,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-016",
+        "question": "How long is the retention period?",
+        "type": "ambiguous",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-retention-011"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-changelog-015",
+          "nd-pagination-008",
+          "nd-troubleshoot-api-014",
+          "nd-auth-005",
+          "nd-webhook-retries-010",
+          "nd-ratelimits-007",
+          "nd-auth-legacy-006",
+          "nd-webhooks-009"
+        ],
+        "top_chunk_ids": [
+          "nd-workspaces-003::0002",
+          "nd-retention-011::0000",
+          "nd-retention-011::0002",
+          "nd-changelog-015::0001",
+          "nd-retention-011::0001"
+        ],
+        "recall_at_5": 1.0,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 0.5,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 1.0,
+        "latency_ms": 27.833,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-017",
+        "question": "What is the maximum number of keys?",
+        "type": "ambiguous",
+        "answerable": true,
+        "relevant_doc_ids": [
+          "nd-workspaces-003",
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-changelog-015",
+          "nd-roles-004",
+          "nd-migration-016",
+          "nd-troubleshoot-api-014",
+          "nd-workspaces-003",
+          "nd-pagination-008",
+          "nd-ratelimits-007",
+          "nd-sso-017",
+          "nd-cli-018"
+        ],
+        "top_chunk_ids": [
+          "nd-auth-005::0001",
+          "nd-changelog-015::0000",
+          "nd-roles-004::0001",
+          "nd-migration-016::0001",
+          "nd-troubleshoot-api-014::0001"
+        ],
+        "recall_at_5": 0.5,
+        "hit_at_5": 1.0,
+        "reciprocal_rank_at_10": 1.0,
+        "abstained": false,
+        "abstention_correct": true,
+        "coverage": 0.6667,
+        "latency_ms": 26.211,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-018",
+        "question": "What uptime percentage does the NimbusDesk SLA guarantee?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-cli-018",
+          "nd-install-001",
+          "nd-config-002",
+          "nd-auth-005",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-ratelimits-007",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-install-013",
+          "nd-sso-017"
+        ],
+        "top_chunk_ids": [
+          "nd-cli-018::0001",
+          "nd-install-001::0002",
+          "nd-config-002::0001",
+          "nd-install-001::0001",
+          "nd-cli-018::0002"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.2,
+        "latency_ms": 25.998,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-019",
+        "question": "Is there a NimbusDesk mobile application for iOS?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-cli-018",
+          "nd-config-002",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-troubleshoot-install-013",
+          "nd-sso-017",
+          "nd-webhooks-009",
+          "nd-webhook-retries-010",
+          "nd-exports-012"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0000",
+          "nd-install-001::0001",
+          "nd-cli-018::0001",
+          "nd-config-002::0000",
+          "nd-install-001::0002"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.25,
+        "latency_ms": 25.584,
+        "citations_valid": true,
+        "notes": ""
+      },
+      {
+        "question_id": "test-020",
+        "question": "Who founded the company behind NimbusDesk?",
+        "type": "unanswerable",
+        "answerable": false,
+        "relevant_doc_ids": [],
+        "retrieved_doc_ids": [
+          "nd-install-001",
+          "nd-config-002",
+          "nd-cli-018",
+          "nd-troubleshoot-install-013",
+          "nd-auth-005",
+          "nd-sso-017",
+          "nd-auth-legacy-006",
+          "nd-webhooks-009",
+          "nd-exports-012",
+          "nd-webhook-retries-010"
+        ],
+        "top_chunk_ids": [
+          "nd-install-001::0001",
+          "nd-config-002::0000",
+          "nd-install-001::0000",
+          "nd-install-001::0002",
+          "nd-cli-018::0001"
+        ],
+        "recall_at_5": null,
+        "hit_at_5": null,
+        "reciprocal_rank_at_10": null,
+        "abstained": true,
+        "abstention_correct": true,
+        "coverage": 0.25,
+        "latency_ms": 27.411,
+        "citations_valid": true,
+        "notes": ""
+      }
+    ]
+  },
+  "failures": {
+    "keyword": [
+      {
+        "question_id": "test-012",
+        "question": "My export download link stopped working after an hour. Is the export gone?",
+        "type": "paraphrase",
+        "failure": "refused an answerable question",
+        "coverage": 0.5,
+        "expected_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-webhooks-009",
+          "nd-ratelimits-007"
+        ]
+      },
+      {
+        "question_id": "test-017",
+        "question": "What is the maximum number of keys?",
+        "type": "ambiguous",
+        "failure": "only part of the labelled relevant set was retrieved",
+        "expected_doc_ids": [
+          "nd-workspaces-003",
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-changelog-015",
+          "nd-troubleshoot-api-014",
+          "nd-pagination-008",
+          "nd-migration-016"
+        ]
+      }
+    ],
+    "semantic": [
+      {
+        "question_id": "test-004",
+        "question": "How large can a single export part be?",
+        "type": "answerable",
+        "failure": "refused an answerable question",
+        "coverage": 0.5,
+        "expected_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-ratelimits-007",
+          "nd-changelog-015",
+          "nd-cli-018",
+          "nd-retention-011"
+        ]
+      },
+      {
+        "question_id": "test-011",
+        "question": "If I rename a workspace, do links using the old name break straight away?",
+        "type": "paraphrase",
+        "failure": "refused an answerable question",
+        "coverage": 0.444,
+        "expected_doc_ids": [
+          "nd-workspaces-003"
+        ],
+        "retrieved_doc_ids": [
+          "nd-workspaces-003",
+          "nd-retention-011",
+          "nd-auth-005",
+          "nd-auth-legacy-006",
+          "nd-migration-016"
+        ]
+      },
+      {
+        "question_id": "test-012",
+        "question": "My export download link stopped working after an hour. Is the export gone?",
+        "type": "paraphrase",
+        "failure": "refused an answerable question",
+        "coverage": 0.5,
+        "expected_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-changelog-015",
+          "nd-retention-011",
+          "nd-troubleshoot-install-013"
+        ]
+      },
+      {
+        "question_id": "test-014",
+        "question": "How many webhook retries did NimbusDesk do before release 2.4?",
+        "type": "version_conflict",
+        "failure": "only part of the labelled relevant set was retrieved",
+        "expected_doc_ids": [
+          "nd-changelog-015",
+          "nd-migration-016"
+        ],
+        "retrieved_doc_ids": [
+          "nd-cli-018",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-config-002",
+          "nd-changelog-015"
+        ]
+      }
+    ],
+    "hybrid": [
+      {
+        "question_id": "test-012",
+        "question": "My export download link stopped working after an hour. Is the export gone?",
+        "type": "paraphrase",
+        "failure": "refused an answerable question",
+        "coverage": 0.5,
+        "expected_doc_ids": [
+          "nd-exports-012"
+        ],
+        "retrieved_doc_ids": [
+          "nd-exports-012",
+          "nd-cli-018",
+          "nd-retention-011",
+          "nd-webhooks-009",
+          "nd-changelog-015"
+        ]
+      },
+      {
+        "question_id": "test-014",
+        "question": "How many webhook retries did NimbusDesk do before release 2.4?",
+        "type": "version_conflict",
+        "failure": "only part of the labelled relevant set was retrieved",
+        "expected_doc_ids": [
+          "nd-changelog-015",
+          "nd-migration-016"
+        ],
+        "retrieved_doc_ids": [
+          "nd-changelog-015",
+          "nd-webhook-retries-010",
+          "nd-webhooks-009",
+          "nd-install-001",
+          "nd-auth-005"
+        ]
+      },
+      {
+        "question_id": "test-017",
+        "question": "What is the maximum number of keys?",
+        "type": "ambiguous",
+        "failure": "only part of the labelled relevant set was retrieved",
+        "expected_doc_ids": [
+          "nd-workspaces-003",
+          "nd-auth-005"
+        ],
+        "retrieved_doc_ids": [
+          "nd-auth-005",
+          "nd-changelog-015",
+          "nd-roles-004",
+          "nd-migration-016",
+          "nd-troubleshoot-api-014"
+        ]
+      }
+    ]
+  },
+  "calibration": {
+    "available": true,
+    "method": "hybrid",
+    "sweep": [
+      {
+        "threshold": 0.0,
+        "correct_refusals": 0,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.0,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.5
+      },
+      {
+        "threshold": 0.05,
+        "correct_refusals": 0,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.0,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.5
+      },
+      {
+        "threshold": 0.1,
+        "correct_refusals": 0,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.0,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.5
+      },
+      {
+        "threshold": 0.15,
+        "correct_refusals": 0,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.0,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.5
+      },
+      {
+        "threshold": 0.2,
+        "correct_refusals": 0,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.0,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.5
+      },
+      {
+        "threshold": 0.25,
+        "correct_refusals": 0,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.0,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.5
+      },
+      {
+        "threshold": 0.3,
+        "correct_refusals": 1,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.3333,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.6667
+      },
+      {
+        "threshold": 0.35,
+        "correct_refusals": 1,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.3333,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.6667
+      },
+      {
+        "threshold": 0.4,
+        "correct_refusals": 1,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.3333,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.6667
+      },
+      {
+        "threshold": 0.45,
+        "correct_refusals": 1,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.3333,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.6667
+      },
+      {
+        "threshold": 0.5,
+        "correct_refusals": 1,
+        "unanswerable_total": 3,
+        "false_refusals": 0,
+        "answerable_total": 17,
+        "refusal_recall": 0.3333,
+        "answer_retention": 1.0,
+        "balanced_accuracy": 0.6667
+      },
+      {
+        "threshold": 0.55,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 1,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.9412,
+        "balanced_accuracy": 0.9706
+      },
+      {
+        "threshold": 0.6,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 1,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.9412,
+        "balanced_accuracy": 0.9706
+      },
+      {
+        "threshold": 0.65,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 2,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.8824,
+        "balanced_accuracy": 0.9412
+      },
+      {
+        "threshold": 0.7,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 3,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.8235,
+        "balanced_accuracy": 0.9118
+      },
+      {
+        "threshold": 0.75,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 3,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.8235,
+        "balanced_accuracy": 0.9118
+      },
+      {
+        "threshold": 0.8,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 3,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.8235,
+        "balanced_accuracy": 0.9118
+      },
+      {
+        "threshold": 0.85,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 5,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.7059,
+        "balanced_accuracy": 0.8529
+      },
+      {
+        "threshold": 0.9,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 9,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.4706,
+        "balanced_accuracy": 0.7353
+      },
+      {
+        "threshold": 0.95,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 9,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.4706,
+        "balanced_accuracy": 0.7353
+      },
+      {
+        "threshold": 1.0,
+        "correct_refusals": 3,
+        "unanswerable_total": 3,
+        "false_refusals": 9,
+        "answerable_total": 17,
+        "refusal_recall": 1.0,
+        "answer_retention": 0.4706,
+        "balanced_accuracy": 0.7353
+      }
+    ],
+    "selected_threshold": 0.55,
+    "selected_balanced_accuracy": 0.9706,
+    "configured_threshold": 0.55,
+    "note": "Swept on development questions only. The configured threshold is whatever ABSTAIN_COVERAGE_THRESHOLD is set to; it is not changed automatically by this command."
+  }
+}

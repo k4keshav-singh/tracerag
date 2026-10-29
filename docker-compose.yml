@@ -1,0 +1,30 @@
+# Minimal single-service compose file.
+#
+#   docker compose up --build
+#   open http://localhost:8000
+
+services:
+  tracerag:
+    build:
+      context: .
+      args:
+        # Set to "false" for a much smaller image that downloads the embedding
+        # model on first run instead of baking it in.
+        BAKE_MODEL: "true"
+    image: tracerag:local
+    ports:
+      - "8000:8000"
+    environment:
+      # Optional LLM mode. Leave unset for the no-key extractive demo.
+      # Values come from your shell or a local .env file, never from this file.
+      LLM_BASE_URL: "${LLM_BASE_URL:-}"
+      LLM_API_KEY: "${LLM_API_KEY:-}"
+      LLM_MODEL: "${LLM_MODEL:-}"
+    volumes:
+      # Persist the SQLite database and the embedding cache across restarts, so
+      # the index is not rebuilt every time the container comes up.
+      - tracerag-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  tracerag-data:

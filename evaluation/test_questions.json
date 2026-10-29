@@ -1,0 +1,167 @@
+{
+  "split": "test",
+  "description": "Held-out test questions. Not used for tuning any threshold or retrieval parameter. Synthetic, author-reviewed fixtures written against the NimbusDesk corpus - not an independently validated benchmark.",
+  "label_convention": "relevant_doc_ids lists documents that genuinely contain the answer. reference_fact is a short string that appears in, or directly paraphrases, those documents. Unanswerable questions have an empty relevant_doc_ids list and answerable=false.",
+  "questions": [
+    {
+      "id": "test-001",
+      "type": "answerable",
+      "answerable": true,
+      "question": "What is the burst capacity of the workspace rate limiter?",
+      "relevant_doc_ids": ["nd-ratelimits-007"],
+      "reference_fact": "Burst capacity is 120 requests; the bucket refills at 10 tokens per second."
+    },
+    {
+      "id": "test-002",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How many concurrent delivery requests does NimbusDesk make to one webhook endpoint?",
+      "relevant_doc_ids": ["nd-webhook-retries-010"],
+      "reference_fact": "At most 4 concurrent requests per endpoint."
+    },
+    {
+      "id": "test-003",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long is the grace window after an API key is rotated?",
+      "relevant_doc_ids": ["nd-auth-005"],
+      "reference_fact": "The rotation grace window is 24 hours and is not configurable."
+    },
+    {
+      "id": "test-004",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How large can a single export part be?",
+      "relevant_doc_ids": ["nd-exports-012"],
+      "reference_fact": "Exports larger than 5 GB are split into numbered parts of at most 5 GB each."
+    },
+    {
+      "id": "test-005",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long does a pagination cursor stay valid?",
+      "relevant_doc_ids": ["nd-pagination-008"],
+      "reference_fact": "A cursor stays valid for 15 minutes; an expired cursor returns 400 cursor_expired."
+    },
+    {
+      "id": "test-006",
+      "type": "answerable",
+      "answerable": true,
+      "question": "Which is the lowest role that can create an API key?",
+      "relevant_doc_ids": ["nd-roles-004"],
+      "reference_fact": "Maintainer is the lowest role that can create an API key."
+    },
+    {
+      "id": "test-007",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long does a development tunnel stay open?",
+      "relevant_doc_ids": ["nd-cli-018"],
+      "reference_fact": "Tunnels last 8 hours, then close, and the URL is not reused."
+    },
+    {
+      "id": "test-008",
+      "type": "answerable",
+      "answerable": true,
+      "question": "After how long is a continuously failing webhook endpoint disabled automatically?",
+      "relevant_doc_ids": ["nd-webhook-retries-010"],
+      "reference_fact": "An endpoint failing every delivery for 72 consecutive hours is disabled automatically."
+    },
+    {
+      "id": "test-009",
+      "type": "answerable",
+      "answerable": true,
+      "question": "What is the SCIM base URL for a workspace?",
+      "relevant_doc_ids": ["nd-sso-017"],
+      "reference_fact": "The SCIM base URL is {external_url}/scim/v2."
+    },
+    {
+      "id": "test-010",
+      "type": "answerable",
+      "answerable": true,
+      "question": "How long does a workspace stay in pending deletion before it is purged?",
+      "relevant_doc_ids": ["nd-workspaces-003", "nd-retention-011"],
+      "reference_fact": "The grace period is 14 days and is not configurable."
+    },
+    {
+      "id": "test-011",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "If I rename a workspace, do links using the old name break straight away?",
+      "relevant_doc_ids": ["nd-workspaces-003"],
+      "reference_fact": "The old slug is reserved for 30 days after a rename and returns 308 Permanent Redirect during that window."
+    },
+    {
+      "id": "test-012",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "My export download link stopped working after an hour. Is the export gone?",
+      "relevant_doc_ids": ["nd-exports-012"],
+      "reference_fact": "The signed URL is valid for 1 hour while the archive itself is retained 7 days; re-request the record to mint a fresh URL."
+    },
+    {
+      "id": "test-013",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "With single sign-on enforced, can anyone still sign in using a password?",
+      "relevant_doc_ids": ["nd-sso-017"],
+      "reference_fact": "Password login is disabled for all members except Owners, and that exemption cannot be turned off."
+    },
+    {
+      "id": "test-014",
+      "type": "version_conflict",
+      "answerable": true,
+      "question": "How many webhook retries did NimbusDesk do before release 2.4?",
+      "relevant_doc_ids": ["nd-changelog-015", "nd-migration-016"],
+      "reference_fact": "Release 2.3 retried 3 times over 15 minutes; 2.4 lengthened this to 6 retries over nearly 9 hours."
+    },
+    {
+      "id": "test-015",
+      "type": "version_conflict",
+      "answerable": true,
+      "question": "Can I use the page or offset query parameter on list endpoints?",
+      "relevant_doc_ids": ["nd-pagination-008", "nd-changelog-015"],
+      "reference_fact": "Offset pagination was removed in 2.4 and now returns 400 unsupported_parameter."
+    },
+    {
+      "id": "test-016",
+      "type": "ambiguous",
+      "answerable": true,
+      "question": "How long is the retention period?",
+      "relevant_doc_ids": ["nd-retention-011"],
+      "reference_fact": "Underspecified: retention differs by data class, from 7 days for export archives to 400 days for audit entries."
+    },
+    {
+      "id": "test-017",
+      "type": "ambiguous",
+      "answerable": true,
+      "question": "What is the maximum number of keys?",
+      "relevant_doc_ids": ["nd-workspaces-003", "nd-auth-005"],
+      "reference_fact": "Underspecified: a workspace has a hard limit of 100 active API keys, while a key's maximum lifetime is 365 days."
+    },
+    {
+      "id": "test-018",
+      "type": "unanswerable",
+      "answerable": false,
+      "question": "What uptime percentage does the NimbusDesk SLA guarantee?",
+      "relevant_doc_ids": [],
+      "reference_fact": "The corpus contains no SLA or uptime commitment."
+    },
+    {
+      "id": "test-019",
+      "type": "unanswerable",
+      "answerable": false,
+      "question": "Is there a NimbusDesk mobile application for iOS?",
+      "relevant_doc_ids": [],
+      "reference_fact": "The corpus never mentions mobile applications."
+    },
+    {
+      "id": "test-020",
+      "type": "unanswerable",
+      "answerable": false,
+      "question": "Who founded the company behind NimbusDesk?",
+      "relevant_doc_ids": [],
+      "reference_fact": "The corpus contains no company or founder information."
+    }
+  ]
+}

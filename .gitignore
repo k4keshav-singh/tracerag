@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# TraceRAG runtime data
+# The SQLite database and the embedding cache are rebuildable from the
+# checked-in corpus; they are not source.
+data/tracerag.db
+data/tracerag.db-journal
+data/index/
+
+# Secrets - never commit a real .env; .env.example is the template.
+.env
+.env.*
+!.env.example
+
+# Model cache, if HF_HOME is pointed inside the repo
+.cache/
+models/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

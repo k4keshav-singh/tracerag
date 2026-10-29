@@ -1,0 +1,16 @@
+# TraceRAG runtime dependencies.
+# Pinned ranges are deliberately loose; the exact resolved set that this project
+# was built and benchmarked against lives in requirements.lock.txt.
+
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+pydantic>=2.8,<3.0
+pydantic-settings>=2.4,<3.0
+python-multipart>=0.0.9
+numpy>=1.26,<3.0
+httpx>=0.27,<1.0
+
+# Semantic retrieval. Optional at runtime: if this import fails, TraceRAG keeps
+# keyword retrieval and extractive answers working and reports semantic/hybrid
+# as unavailable with a reason. See README "Model download".
+sentence-transformers>=3.0,<6.0
