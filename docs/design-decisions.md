@@ -156,6 +156,22 @@ asking anyone to re-upload. At 80 KB of corpus the duplication is irrelevant.
 Plain HTML, CSS and JavaScript served by FastAPI. No bundler, no framework, no
 `node_modules`.
 
+The visual language is adapted from a published design reference (credited in
+the README's provenance section): DM Sans, a four-colour palette, a lavender
+ground with a drifting gradient mesh, and filter-style fields that put a small
+uppercase label above its value. That last component is why the query controls
+read the way they do — "RETRIEVAL METHOD / Hybrid" is the same shape as the
+reference's "COUNTRY / Select", and it suits a control whose label is needed
+permanently rather than only while the field is empty.
+
+Motion is used where it carries information, not as decoration: the coverage
+meter animates to the measured value against a tick mark at the abstention
+threshold, score bars are scaled within a single result set (never across
+methods, whose scores are not comparable), and results stagger in so the eye
+can follow rank order. Everything decorative is disabled under
+`prefers-reduced-motion`, where the count-up animation snaps to its final value
+rather than being skipped entirely.
+
 The UI needs a form, a result list, a modal and four fetch calls. React plus a
 build pipeline would add a toolchain to install, a build step to CI, and a
 second language ecosystem to the Dockerfile, to produce the same page. The

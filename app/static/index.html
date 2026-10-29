@@ -1,131 +1,281 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TraceRAG</title>
-<link rel="stylesheet" href="/static/styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>&#128269;</text></svg>">
+
+<!-- DM Sans is the design's typeface. It is a progressive enhancement: the
+     container runs offline, where this request simply fails and the local
+     fallback stack in styles.css takes over without affecting layout. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<!-- ?v= is bumped when these assets change, so a redeploy is never served from
+     a stale browser cache. -->
+<link rel="stylesheet" href="/static/styles.css?v=3">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%236178FF'/><ellipse cx='16' cy='11' rx='8' ry='3.4' fill='white'/><path d='M8 11v10c0 1.9 3.6 3.4 8 3.4s8-1.5 8-3.4V11' stroke='white' stroke-width='2.4' fill='none'/></svg>">
 </head>
 <body>
-<header class="masthead">
-  <div class="wrap masthead-inner">
-    <div>
-      <h1>TraceRAG</h1>
-      <p class="tagline">Evidence-backed Q&amp;A over a synthetic documentation corpus.</p>
+
+<!-- Drifting gradient mesh, the design's signature background. Decorative. -->
+<div class="aurora" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+  <span class="blob blob-4"></span>
+  <span class="grid-veil"></span>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"><i id="scroll-bar"></i></div>
+
+<header class="nav" id="nav">
+  <div class="shell nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="20" height="20">
+          <ellipse cx="16" cy="9.5" rx="9" ry="3.8" fill="currentColor"/>
+          <path d="M7 9.5v13c0 2.1 4 3.8 9 3.8s9-1.7 9-3.8v-13"
+                stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <path d="M7 16c0 2.1 4 3.8 9 3.8s9-1.7 9-3.8"
+                stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">TraceRAG</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#ask">Ask</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#corpus">Corpus</a>
+      <a href="#benchmark">Benchmark</a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="pill-group" id="status-pills" aria-live="polite">
+        <span class="pill pill-muted" id="pill-corpus"><i class="dot"></i>loading</span>
+      </div>
+      <button type="button" class="icon-btn" id="theme-toggle"
+              aria-label="Switch colour theme" title="Switch colour theme">
+        <svg class="ico-sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"/>
+          </g>
+        </svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+          <path d="M20 14.2A8.2 8.2 0 1 1 9.8 4a6.6 6.6 0 0 0 10.2 10.2Z" fill="currentColor"/>
+        </svg>
+      </button>
     </div>
-    <dl class="status-strip" id="status-strip" aria-live="polite">
-      <div class="status-item"><dt>Corpus</dt><dd id="stat-corpus">&hellip;</dd></div>
-      <div class="status-item"><dt>Methods</dt><dd id="stat-methods">&hellip;</dd></div>
-      <div class="status-item"><dt>Answer modes</dt><dd id="stat-llm">&hellip;</dd></div>
-    </dl>
   </div>
 </header>
 
-<div class="wrap layout">
-  <main>
-    <section class="panel" aria-labelledby="ask-heading">
-      <h2 id="ask-heading">Ask a question</h2>
+<main id="top">
 
-      <form id="ask-form" autocomplete="off">
-        <label class="field">
-          <span class="field-label">Question</span>
-          <textarea id="question" rows="2" required
-            placeholder="e.g. How long do API keys last before they expire?"></textarea>
-        </label>
-
-        <div class="controls">
-          <label class="field compact">
-            <span class="field-label">Retrieval method</span>
-            <select id="method"></select>
-          </label>
-          <label class="field compact">
-            <span class="field-label">Answer mode</span>
-            <select id="mode">
-              <option value="extractive">Extractive (no API key)</option>
-              <option value="llm">LLM (needs provider)</option>
-            </select>
-          </label>
-          <label class="field compact narrow">
-            <span class="field-label">Top K</span>
-            <input id="topk" type="number" min="1" max="20" value="5">
-          </label>
-          <button type="submit" class="primary" id="ask-button">Ask</button>
-        </div>
-      </form>
-
-      <div class="examples">
-        <span class="examples-label">Try:</span>
-        <div id="examples" class="example-chips"></div>
-      </div>
-    </section>
-
-    <section class="panel" id="answer-panel" aria-labelledby="answer-heading" hidden>
-      <h2 id="answer-heading">Answer</h2>
-      <div id="answer-body"></div>
-    </section>
-
-    <section class="panel" id="chunks-panel" aria-labelledby="chunks-heading" hidden>
-      <div class="panel-head">
-        <h2 id="chunks-heading">Retrieved passages</h2>
-        <p class="hint" id="score-semantics"></p>
-      </div>
-      <div id="chunks-body"></div>
-    </section>
-
-    <section class="panel" aria-labelledby="bench-heading">
-      <div class="panel-head">
-        <h2 id="bench-heading">Benchmark</h2>
-        <p class="hint">Results from a checked-in evaluation run, not a live measurement.</p>
-      </div>
-      <div id="benchmark-body" class="muted">Loading&hellip;</div>
-    </section>
-  </main>
-
-  <aside>
-    <section class="panel" aria-labelledby="corpus-heading">
-      <div class="panel-head">
-        <h2 id="corpus-heading">Documents</h2>
-        <button type="button" class="ghost" id="load-sample">Load sample corpus</button>
-      </div>
-      <p class="hint">
-        Synthetic documentation for a fictional product. Not real vendor material.
-      </p>
-      <div id="corpus-status" class="notice" hidden></div>
-      <div id="documents" class="muted">Loading&hellip;</div>
-    </section>
-
-    <section class="panel" aria-labelledby="upload-heading">
-      <h2 id="upload-heading">Upload</h2>
-      <p class="hint">UTF-8 <code>.md</code> or <code>.txt</code>, up to <span id="max-size">1 MB</span>.
-        Identical content is detected and skipped.</p>
-      <form id="upload-form">
-        <input type="file" id="file" accept=".md,.txt,text/markdown,text/plain" required>
-        <button type="submit" class="ghost" id="upload-button">Upload</button>
-      </form>
-      <div id="upload-status" class="notice" hidden></div>
-    </section>
-  </aside>
-</div>
-
-<div id="chunk-dialog" class="dialog-backdrop" hidden>
-  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-    <div class="dialog-head">
-      <h3 id="dialog-title">Passage</h3>
-      <button type="button" class="ghost" id="dialog-close" aria-label="Close">Close</button>
+  <!-- ============================ HERO ============================ -->
+  <section class="hero shell">
+    <div class="hero-badge reveal" data-reveal>
+      <i class="dot dot-live"></i>
+      <span>Synthetic corpus &middot; no API key required</span>
     </div>
+
+    <h1 class="hero-title">
+      <span class="w">Ask</span> <span class="w">your</span> <span class="w">documents.</span><br>
+      <span class="w">See</span> <span class="w">the</span> <span class="w accent">evidence.</span>
+    </h1>
+
+    <p class="hero-sub reveal" data-reveal>
+      TraceRAG answers over a document corpus with keyword, semantic and hybrid
+      retrieval, shows the passage behind every claim, and declines when the
+      evidence is not there.
+    </p>
+
+    <dl class="stat-row reveal" data-reveal>
+      <div class="stat">
+        <dt>Documents</dt>
+        <dd><span class="count" id="stat-docs" data-count="0">0</span></dd>
+      </div>
+      <div class="stat">
+        <dt>Chunks</dt>
+        <dd><span class="count" id="stat-chunks" data-count="0">0</span></dd>
+      </div>
+      <div class="stat">
+        <dt>Methods</dt>
+        <dd id="stat-methods" class="stat-chips">&mdash;</dd>
+      </div>
+      <div class="stat">
+        <dt>Answer modes</dt>
+        <dd id="stat-modes" class="stat-chips">&mdash;</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ========================= QUERY CONSOLE ========================= -->
+  <section class="shell" id="ask">
+    <form class="console reveal" id="ask-form" data-reveal autocomplete="off">
+
+      <div class="field field-question">
+        <label class="field-label" for="question">Question</label>
+        <textarea id="question" rows="1" required
+          placeholder="How long do API keys last before they expire?"></textarea>
+      </div>
+
+      <div class="console-row">
+        <div class="field field-select">
+          <label class="field-label" for="method">Retrieval method</label>
+          <div class="select-wrap">
+            <select id="method"></select>
+            <svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 8l4.5 4.5L14.5 8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="field field-select">
+          <label class="field-label" for="mode">Answer mode</label>
+          <div class="select-wrap">
+            <select id="mode">
+              <option value="extractive">Extractive &mdash; no API key</option>
+              <option value="llm">LLM &mdash; needs provider</option>
+            </select>
+            <svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 8l4.5 4.5L14.5 8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="field field-select field-narrow">
+          <label class="field-label" for="topk">Top K</label>
+          <div class="select-wrap">
+            <select id="topk">
+              <option>3</option><option selected>5</option><option>8</option>
+              <option>10</option><option>15</option><option>20</option>
+            </select>
+            <svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 8l4.5 4.5L14.5 8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <button type="submit" class="cta" id="ask-button">
+          <span class="cta-label">Ask</span>
+          <svg class="cta-ico" viewBox="0 0 20 20" width="15" height="15" aria-hidden="true">
+            <path d="M3.5 10h12m0 0-4.6-4.6M15.5 10l-4.6 4.6"
+                  stroke="currentColor" stroke-width="2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="cta-shine" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="console-foot">
+        <span class="field-label">Try</span>
+        <div class="chips" id="examples"></div>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============================ ANSWER ============================ -->
+  <section class="shell" id="evidence">
+    <div class="layout">
+      <div class="col-main">
+
+        <article class="card answer-card" id="answer-panel" hidden>
+          <header class="card-head">
+            <h2>Answer</h2>
+            <span class="card-tag" id="answer-tag"></span>
+          </header>
+          <div id="answer-body"></div>
+        </article>
+
+        <article class="card" id="chunks-panel" hidden>
+          <header class="card-head">
+            <h2>Retrieved passages</h2>
+            <span class="card-tag" id="chunks-count"></span>
+          </header>
+          <p class="hint" id="score-semantics"></p>
+          <div id="chunks-body"></div>
+        </article>
+
+        <article class="card" id="benchmark">
+          <header class="card-head">
+            <h2>Benchmark</h2>
+            <span class="card-tag">held-out split</span>
+          </header>
+          <p class="hint">
+            From a checked-in evaluation run, not a live measurement.
+          </p>
+          <div id="benchmark-body"></div>
+        </article>
+
+      </div>
+
+      <aside class="col-side" id="corpus">
+
+        <article class="card">
+          <header class="card-head">
+            <h2>Documents</h2>
+            <button type="button" class="ghost-btn" id="load-sample">Load corpus</button>
+          </header>
+          <p class="hint">
+            Synthetic documentation for a fictional product. Not real vendor material.
+          </p>
+          <div id="corpus-status" class="note" hidden></div>
+          <div class="doc-list" id="documents"></div>
+        </article>
+
+        <article class="card">
+          <header class="card-head">
+            <h2>Upload</h2>
+          </header>
+          <p class="hint">
+            UTF-8 <code>.md</code> or <code>.txt</code>, up to <span id="max-size">1 MB</span>.
+            Identical content is detected and skipped.
+          </p>
+          <form id="upload-form">
+            <label class="drop" id="drop-zone" for="file">
+              <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+                <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"
+                      stroke="currentColor" stroke-width="1.9" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="drop-text" id="drop-text">Choose a file or drop it here</span>
+              <input type="file" id="file" accept=".md,.txt,text/markdown,text/plain" required>
+            </label>
+            <button type="submit" class="ghost-btn wide" id="upload-button">Upload</button>
+          </form>
+          <div id="upload-status" class="note" hidden></div>
+        </article>
+
+      </aside>
+    </div>
+  </section>
+
+  <footer class="shell foot">
+    <p>
+      TraceRAG is a portfolio project. The corpus is synthetic and describes a
+      fictional product. Retrieval scores from different methods are not
+      interchangeable.
+    </p>
+  </footer>
+</main>
+
+<!-- ============================ DIALOG ============================ -->
+<div id="chunk-dialog" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <header class="modal-head">
+      <div>
+        <span class="field-label">Passage</span>
+        <h3 id="dialog-title"></h3>
+      </div>
+      <button type="button" class="icon-btn" id="dialog-close" aria-label="Close">
+        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+          <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
     <div id="dialog-body"></div>
   </div>
 </div>
 
-<footer class="wrap footer">
-  <p>
-    TraceRAG is a portfolio project. The corpus is synthetic and describes a
-    fictional product. Retrieval scores from different methods are not
-    interchangeable.
-  </p>
-</footer>
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
 
-<script src="/static/app.js"></script>
+<script src="/static/app.js?v=3"></script>
 </body>
 </html>

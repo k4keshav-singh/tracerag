@@ -15,7 +15,8 @@ labelled as such everywhere it appears.
 ![An answered question with inline citations and inspectable retrieved passages](docs/screenshots/answer-with-citations.jpg)
 
 *Extractive mode: evidence with citations that resolve to a source file and line
-range. More in [docs/screenshots](docs/screenshots/).*
+range. Light and dark themes, animated coverage meters and score bars, and more
+in [docs/screenshots](docs/screenshots/).*
 
 ## The problem
 
@@ -48,6 +49,10 @@ are the three things usually missing:
   latency, recording corpus hash, model and settings.
 - **Ingestion that validates** — 1 MB cap, UTF-8 only, `.md`/`.txt` only,
   filename sanitisation, content-hash dedup, automatic index rebuild.
+- **A considered interface** — light and dark themes, drag-and-drop upload, an
+  animated coverage meter showing the abstention margin, per-result score bars
+  scaled within one query, scroll-reveal and reduced-motion support. No build
+  step: plain HTML, CSS and JavaScript.
 
 ## Status
 
@@ -348,9 +353,18 @@ docker run -p 8000:8000 tracerag:local
 ## Provenance
 
 **Original work (written for this project):** all Python in `app/` and
-`scripts/`, all tests, the frontend, the Dockerfile, the CI workflow, and all
-documentation. The BM25 and RRF implementations are written out rather than
-imported.
+`scripts/`, all tests, the frontend markup, stylesheet and script, the
+Dockerfile, the CI workflow, and all documentation. The BM25 and RRF
+implementations are written out rather than imported.
+
+**Third-party design reference:** the interface's visual language — the
+four-colour palette (`#060B28`, `#6178FF`, `#A79FFF`, `#394063`), DM Sans, the
+lavender ground with drifting gradient mesh, and the label-over-value control
+row — is adapted from
+["An all-encompassing database website design"](https://dribbble.com/shots/24279688-An-all-encompassing-database-website-design)
+by Mehedi Hasan for HD Design, used as a styling reference. No assets, markup or
+CSS were taken from it; the implementation is written from scratch against
+TraceRAG's own components.
 
 **Synthetic data (written for this project):** the 18 NimbusDesk documents in
 `data/corpus/` and the 40 evaluation questions in `evaluation/`. NimbusDesk is a

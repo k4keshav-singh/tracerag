@@ -61,7 +61,18 @@ run**; nothing below is aspirational.
 - [x] Credentials server-side only; never in responses, payload or logs
 
 ### Frontend
-- [x] Responsive single-page UI, no build step, light and dark themes
+- [x] Visual language rebuilt against a published design reference (credited in
+      the README): DM Sans, the four-colour palette, lavender ground with a
+      drifting gradient mesh, label-over-value control fields, violet pill CTA
+- [x] Light and dark themes with a header toggle, remembered in localStorage,
+      defaulting to `prefers-color-scheme`
+- [x] Motion that carries meaning: animated coverage meter with a threshold
+      tick, per-result score bars scaled within one query, staggered result
+      entry, count-up stats, scroll reveal, scroll-progress bar
+- [x] Drag-and-drop upload, toast notifications, shimmer loading skeletons
+- [x] Full `prefers-reduced-motion` support
+- [x] Asset cache-busting (`?v=`) so a redeploy is never served stale
+- [x] Responsive single-page UI, no build step
 - [x] Question field, example chips (answerable / absent / outdated / paraphrase
       / careful-retrieval), method and mode selectors, top-K
 - [x] Answer panel with explicit mode banner
@@ -142,6 +153,11 @@ These were caught by running things, not by reading them:
 7. **Unescaped filename in the frontend.** Filenames are sanitised server-side,
    but were interpolated into `innerHTML` without escaping. Escaped at the sink
    too.
+8. **Question field rendered 200px tall on load.** The auto-grow routine measured
+   `scrollHeight` before stylesheets and webfonts had settled, read a bogus
+   value and clamped it to its own maximum. Deferred the first measurement to
+   the next frame, repeated it on `window.load`, and added CSS `min-height` /
+   `max-height` so the field is sane even before the script runs.
 
 ## Unresolved limitations
 
