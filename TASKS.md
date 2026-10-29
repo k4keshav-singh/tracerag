@@ -195,8 +195,12 @@ Carried deliberately, with reasons:
 - **No reranker.** Likely the biggest available quality win, deliberately out of
   scope.
 - **No authentication**; anyone who can reach the port can upload.
-- **CI workflow is unexecuted.** No GitHub repository was created, per the
-  instruction not to publish. The workflow is written but has never run.
+- **CI has now run.** All four jobs (tests on Python 3.11 and 3.12, the HTTP
+  smoke test, and the Docker build) passed on the first execution. The
+  evaluation run in CI reproduced every quality metric from
+  `reports/benchmark.json` exactly, on different hardware, OS and Python patch
+  version — which is the strongest evidence so far that the benchmark is
+  genuinely reproducible. Latency differs, as expected.
 
 ## Out of scope (not attempted)
 

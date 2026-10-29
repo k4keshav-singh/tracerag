@@ -69,7 +69,7 @@ Everything described below was built and run. Honest summary:
 | Benchmark CLI | Working; `reports/` comes from a real run |
 | Tests | 99 tests, all passing |
 | Docker | Image builds and serves (see [Docker](#docker)) |
-| CI | Workflow written; **not executed** — no GitHub repository was created |
+| CI | Green: tests on 3.11 and 3.12, HTTP smoke test, Docker build |
 
 **Not done:** no LLM-judged semantic correctness scoring, no reranker, no
 multi-corpus support, no auth. See [Known limitations](#known-limitations).
@@ -236,13 +236,17 @@ Reproduce with `python -m app.evaluate --split test --calibrate`.
 | semantic | 0.912 | 1.000 | 0.894 | 1.00 | 0.18 | 28.2 ms | 37.6 ms |
 | hybrid | 0.941 | 1.000 | **0.971** | 1.00 | 0.06 | 26.8 ms | 31.0 ms |
 
-The quality metrics are deterministic and reproduce exactly. The latency figures
-do not: across repeated runs on the same machine keyword stayed in 0.7–1.3 ms
-and hybrid in 22–28 ms, depending on what else the machine was doing. Read the
-ratio (roughly 20–30×), not the third significant figure.
+The quality metrics are deterministic, and that is verified rather than
+asserted: the same evaluation run in CI on Ubuntu with Python 3.12.15 produced
+**identical** values for every recall, MRR, abstention and false-refusal figure
+above, against the same corpus fingerprint. Only latency moved — GitHub's
+runners are faster than the machine these numbers came from (keyword 0.2 ms,
+hybrid 7.1 ms there). Within a single machine it also drifts with load: keyword
+stayed in 0.7–1.3 ms and hybrid in 22–28 ms across repeated local runs. Read the
+ratio (roughly 20–35× depending on hardware), not the absolute figures.
 
 **Hybrid did not beat the keyword baseline on this corpus.** BM25 leads on
-Recall@5 and ties on MRR@10, at roughly 30× lower latency. That is the result
+Recall@5 and ties on MRR@10, at roughly 20–35× lower latency. That is the result
 the run produced and it is reported as-is. The résumé bullets below quote the
 same numbers.
 
